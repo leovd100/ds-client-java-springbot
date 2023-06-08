@@ -1,7 +1,6 @@
 package dsclient.dsclient.controller;
 
 import dsclient.dsclient.dto.ClientDto;
-import dsclient.dsclient.entities.Client;
 import dsclient.dsclient.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,8 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -52,6 +49,10 @@ public class ClientController {
         return ResponseEntity.ok().body(clientService.updateClient(dto, id));
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteClient(@PathVariable("id") Long id){
+        clientService.deleteClient(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

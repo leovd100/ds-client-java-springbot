@@ -4,16 +4,16 @@ import dsclient.dsclient.dto.ClientDto;
 import dsclient.dsclient.entities.Client;
 import dsclient.dsclient.serviceExceptions.ClientException;
 import dsclient.dsclient.repository.ClientRepository;
+import dsclient.dsclient.serviceExceptions.DatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -54,6 +54,16 @@ public class ClientService {
         }
     }
 
+    @Transactional
+    public void deleteClient(Long id) {
+        try{
+            repository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ClientException("Id not found");
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException("Integrity Violation");
+        }
+    }
 
     private void dtoToClient(ClientDto dto, Client entity){
             entity.setCpf(dto.getCpf());

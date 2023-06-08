@@ -2,6 +2,7 @@ package dsclient.dsclient.service;
 
 import dsclient.dsclient.dto.ClientDto;
 import dsclient.dsclient.entities.Client;
+import dsclient.dsclient.exceptions.ClientNotFoundException;
 import dsclient.dsclient.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,6 @@ public class ClientService {
     @Transactional(readOnly = true)
     public ClientDto findById(Long id) {
         Optional<Client> entity = repository.findById(id);
-        return new ClientDto(entity.get());
+        return new ClientDto(entity.orElseThrow(() -> new ClientNotFoundException("Id not found")));
     }
 }

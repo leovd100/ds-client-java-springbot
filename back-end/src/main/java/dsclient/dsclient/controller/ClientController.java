@@ -2,6 +2,7 @@ package dsclient.dsclient.controller;
 
 import dsclient.dsclient.dto.ClientDto;
 import dsclient.dsclient.service.ClientService;
+import dsclient.dsclient.service.impl.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
 
     @Autowired
-    private ClientService clientService;
+    private ClientServiceImpl clientService;
 
     @GetMapping("/server")
     public ResponseEntity<String> checkServer(){

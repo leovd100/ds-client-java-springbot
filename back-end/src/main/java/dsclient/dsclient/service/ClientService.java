@@ -2,6 +2,7 @@ package dsclient.dsclient.service;
 
 import dsclient.dsclient.dto.ClientDto;
 import dsclient.dsclient.entities.Client;
+import dsclient.dsclient.service.impl.ClientServiceImpl;
 import dsclient.dsclient.serviceExceptions.ClientException;
 import dsclient.dsclient.repository.ClientRepository;
 import dsclient.dsclient.serviceExceptions.DatabaseException;
@@ -17,23 +18,26 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
-public class ClientService {
+public class ClientService implements ClientServiceImpl {
 
     @Autowired
     private ClientRepository repository;
 
+    @Override
     @Transactional(readOnly = true)
     public Page<ClientDto> findAll(PageRequest page){
         Page<Client> clients = repository.findAll(page);
         return clients.map(ClientDto::new);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public ClientDto findById(Long id) {
         Optional<Client> entity = repository.findById(id);
         return new ClientDto(entity.orElseThrow(() -> new ClientException("Id not found")));
     }
 
+    @Override
     @Transactional
     public ClientDto saveClient(ClientDto dto) {
         Client entity = new Client();
@@ -42,6 +46,7 @@ public class ClientService {
         return new ClientDto(entity);
     }
 
+    @Override
     @Transactional
     public ClientDto updateClient(ClientDto dto, Long id) {
         try {
@@ -54,6 +59,7 @@ public class ClientService {
         }
     }
 
+    @Override
     @Transactional
     public void deleteClient(Long id) {
         try{

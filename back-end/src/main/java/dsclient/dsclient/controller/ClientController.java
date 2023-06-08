@@ -1,5 +1,6 @@
 package dsclient.dsclient.controller;
 
+import dsclient.dsclient.dto.ClientDto;
 import dsclient.dsclient.entities.Client;
 import dsclient.dsclient.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,12 @@ public class ClientController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Client>> findAllClients(){
+    public ResponseEntity<List<ClientDto>> findAllClients(){
         return ResponseEntity.ok().body(clientService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Client> findClientById(@PathVariable("id") Long id){
+    public ResponseEntity<ClientDto> findClientById(@PathVariable("id") Long id){
         return ResponseEntity.ok().body(clientService.findById(id));
     }
 }

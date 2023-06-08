@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,4 +40,18 @@ public class ClientController {
     public ResponseEntity<ClientDto> findClientById(@PathVariable("id") Long id){
         return ResponseEntity.ok().body(clientService.findById(id));
     }
+
+
+    @PostMapping()
+    public ResponseEntity<ClientDto> saveClient(@RequestBody ClientDto dto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientService.saveClient(dto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientDto> updateClient(@PathVariable("id") Long id, @RequestBody ClientDto dto){
+        return ResponseEntity.ok().body(clientService.updateClient(dto));
+    }
+
+
+
 }

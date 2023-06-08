@@ -1,8 +1,8 @@
 package dsclient.dsclient.serviceExceptions;
 
-public class ClientNotFoundException extends RuntimeException{
+public class ClientException extends RuntimeException{
     private static final long serialVersionUID = 1L;
-    public ClientNotFoundException(String msg){
+    public ClientException(String msg){
         super(msg);
     }
 

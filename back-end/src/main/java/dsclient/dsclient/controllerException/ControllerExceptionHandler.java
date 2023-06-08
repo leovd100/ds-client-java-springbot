@@ -1,6 +1,6 @@
 package dsclient.dsclient.controllerException;
 
-import dsclient.dsclient.serviceExceptions.ClientNotFoundException;
+import dsclient.dsclient.serviceExceptions.ClientException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +13,8 @@ import java.time.Instant;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(ClientNotFoundException.class)
-    public ResponseEntity<?> entityNotFound(ClientNotFoundException entity, HttpServletRequest httpservlet){
+    @ExceptionHandler(ClientException.class)
+    public ResponseEntity<?> entityNotFound(ClientException entity, HttpServletRequest httpservlet){
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError standardError = new StandardError(
                 Instant.now(),

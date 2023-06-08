@@ -9,6 +9,7 @@ public class ClientDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Long id;
     private String name;
     private String cpf;
     private Double income;
@@ -26,6 +27,7 @@ public class ClientDto implements Serializable {
     }
 
     public ClientDto(Client entity){
+        this.id = entity.getId();
         this.name = entity.getName();
         this.birthDate = entity.getBirthDate();
         this.cpf = entity.getCpf();
@@ -35,6 +37,10 @@ public class ClientDto implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setName(String name) {

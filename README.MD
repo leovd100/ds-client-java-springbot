@@ -23,13 +23,17 @@ GET
 
     /client
 
-    /clients?page=0&linesPerPage=6&direction=ASC&orderBy=name
+    Parâmetros:
+        page={number of page}
+        linesPerPage={lines per page}
+        direction=ASC - default DESC
+        orderBy=name - default id
 
 Busca de cliente por id:
 
 GET
 
-    /clients/1
+    /clients/{id}
 
 Inserção de novo cliente:
 
@@ -51,7 +55,7 @@ Atualização de cliente:
 
 PUT
 
-    /clients/1
+    /clients/{id}
 
     Body:
 
@@ -62,3 +66,9 @@ PUT
         "birthDate": "1994-07-20T10:30:00Z",
         "children": 2
     }
+
+Deleção de cliente:
+
+DELETE
+
+    /clients/{id}

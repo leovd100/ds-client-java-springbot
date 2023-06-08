@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -42,10 +43,15 @@ public class ClientService {
     }
 
     @Transactional
-    public ClientDto updateClient(ClientDto dto) {
-
-        return new ClientDto();
-
+    public ClientDto updateClient(ClientDto dto, Long id) {
+        try {
+            Client entity = repository.getOne(id);
+            dtoToClient(dto, entity);
+            entity = repository.save(entity);
+            return new ClientDto(entity);
+        }catch (EntityNotFoundException e){
+            throw new ClientException("Id not found");
+        }
     }
 
 

@@ -49,7 +49,7 @@ public class ClientController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ClientDto> updateClient(@PathVariable("id") Long id, @RequestBody ClientDto dto){
-        return ResponseEntity.ok().body(clientService.updateClient(dto));
+        return ResponseEntity.ok().body(clientService.updateClient(dto, id));
     }
 
 

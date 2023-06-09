@@ -1,4 +1,4 @@
-package dsclient.dsclient.swagger;
+package dsclient.dsclient.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

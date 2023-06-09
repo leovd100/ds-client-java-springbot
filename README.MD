@@ -17,6 +17,12 @@ Modelo UML da classe
 
 ---
 
+SWAGGER
+
+O swagger está habilitado no projeto
+
+![img](./img/swagger.png)
+
 Busca paginada de clientes:
 
 GET

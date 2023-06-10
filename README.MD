@@ -21,7 +21,11 @@ SWAGGER
 
 O swagger está habilitado no projeto
 
+localhost /swagger-ui.html
+
 ![img](./img/swagger.png)
+
+---
 
 Busca paginada de clientes:
 
